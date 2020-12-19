@@ -2,8 +2,8 @@ const { HomeComponent } = require('./components/home/home.component.js');
 import HomeComponentHTML from './components/home/home.component.html';
 const { FriendsComponent } = require('./components/friends/friends.component.js');
 import FriendsComponentHTML from './components/friends/friends.component.html';
-const { FamilyComponent } = require('./components/family/family.component.js')
-import FamilyComponentHTML from './components/family/family.component.html';
+const { LiveStreamComponent } = require('./components/livestream/livestream.component.js')
+import livestreamComponentHTML from './components/livestream/livestream.component.html';
 // SINGLE PAGE APPLICATION'S ROUTES <3
 const Routes = [
     {
@@ -13,15 +13,15 @@ const Routes = [
         'path': 'friends-component', 'component': FriendsComponent, 'template': FriendsComponentHTML
     },
     {
-        'path': 'family-component', 'component': FamilyComponent, 'template': FamilyComponentHTML
+        'path': 'livestream-component', 'component': LiveStreamComponent, 'template': livestreamComponentHTML
     }
 ]
 
 function active(e) {    
-    for (var i = 0; i < document.getElementsByTagName('li').length; i++) {
-        document.getElementsByTagName('li')[i].classList.remove("active")
+    for (var i = 0; i < document.getElementsByClassName('nav-link').length; i++) {
+        document.getElementsByClassName('nav-link')[i].classList.remove("activez")
     }
-    e.classList.add('active')
+    e.classList.add('activez')
 }
 global.active = active
 var hashStores = [];

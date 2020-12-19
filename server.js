@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var dist = path.join(__dirname, 'dist/');
 var style = path.join(__dirname, 'app/components/');
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
