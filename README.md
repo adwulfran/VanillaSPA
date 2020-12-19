@@ -7,3 +7,6 @@ Light and fast Single Page Application with pure javascript. It only use Express
 ## Prerequisites
 1. Install [Node.js](https://nodejs.org)
 2. From project root folder install all the dependencies: `npm i`
+
+## Run
+1. `npm start`: build files and execute Express server
