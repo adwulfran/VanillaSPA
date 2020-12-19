@@ -3,16 +3,17 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var dist = path.join(__dirname, 'dist/');
-var src = path.join(__dirname, 'app/pages/');
+var style = path.join(__dirname, 'app/components/');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/dist', express.static(dist));
-app.use('/style', express.static(src));
+app.use('/style', express.static(style));
+
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './app/app-component.html'));
+  res.sendFile(path.join(__dirname, './app/index.html'));
 });
 
 app.listen(8082, () => {

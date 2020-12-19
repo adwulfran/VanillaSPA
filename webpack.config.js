@@ -2,11 +2,11 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: {
-    main : './app/app-routing.module.js'
-  },
+  entry: [
+    './app/app-routing.module.js'
+  ],
   output: {
-    filename: '[name].js',
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {

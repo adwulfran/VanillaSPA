@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="../dist/main.js"></script>
+  
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
     .row.content {
@@ -47,21 +47,23 @@
   <div class="container-fluid">
     <div class="row content">
       <div class="col-sm-3 sidenav">
-        <h4>John's Blog</h4>
-        <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a onclick="router('home-component')">Home</a></li>
-          <li><a onclick="router('friends-component')">Friends</a></li>
-          <li><a href="#section3">Family</a></li>
-          <li><a href="#section3">Photos</a></li>
-        </ul><br>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search Blog..">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-        </div>
+       
+          <h4>John's Blog</h4>
+          <ul class="nav nav-pills nav-stacked">
+            <li onclick="active(this)"><a href="#home-component">Home</a></li>
+            <li onclick="active(this)"><a a href="#friends-component">Friends</a></li>
+            <li onclick="active(this)"><a href="#family-component">Family</a></li>
+            <li><a href="#section3">Photos</a></li>
+          </ul><br>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Blog..">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+        
       </div>
 
       <div class="col-sm-9">
@@ -73,7 +75,7 @@
   <footer class="container-fluid">
     <p>Footer Text</p>
   </footer>
-
+<script src="../dist/main.js"></script>
 </body>
 
 </html>
