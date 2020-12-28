@@ -4,6 +4,8 @@ const { FriendsComponent } = require('./components/friends/friends.component.js'
 import FriendsComponentHTML from './components/friends/friends.component.html';
 const { LiveStreamComponent } = require('./components/livestream/livestream.component.js')
 import livestreamComponentHTML from './components/livestream/livestream.component.html';
+const { RealtimeComponent } = require('./components/realtime/realtime.component.js');
+import  RealtimeComponentHTML from './components/realtime/realtime.component.html';
 // SINGLE PAGE APPLICATION'S ROUTES <3
 const Routes = [
     {
@@ -14,6 +16,9 @@ const Routes = [
     },
     {
         'path': 'livestream-component', 'component': LiveStreamComponent, 'template': livestreamComponentHTML
+    },
+    {
+        'path': 'realtime-component', 'component': RealtimeComponent, 'template': RealtimeComponentHTML
     }
 ]
 

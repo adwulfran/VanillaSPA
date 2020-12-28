@@ -1,9 +1,7 @@
 const { TransactionService } = require('./transaction.service.js');
 import Chart from 'chart.js';
+
 export const WebSocketService = () => {
-
-
-
     var price = [];
     var dates = [];
     var chart;
