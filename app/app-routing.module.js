@@ -1,11 +1,11 @@
-const { HomeComponent } = require('./components/home/home.component.js');
+import { HomeComponent } from './components/home/home.component.js'
 import HomeComponentHTML from './components/home/home.component.html';
-const { FriendsComponent } = require('./components/friends/friends.component.js');
+import { FriendsComponent } from './components/friends/friends.component.js'
 import FriendsComponentHTML from './components/friends/friends.component.html';
-const { LiveStreamComponent } = require('./components/livestream/livestream.component.js')
+import { LiveStreamComponent } from './components/livestream/livestream.component.js';
 import livestreamComponentHTML from './components/livestream/livestream.component.html';
-const { RealtimeComponent } = require('./components/realtime/realtime.component.js');
-import  RealtimeComponentHTML from './components/realtime/realtime.component.html';
+import { RealtimeComponent } from './components/realtime/realtime.component.js';
+import RealtimeComponentHTML from './components/realtime/realtime.component.html';
 // SINGLE PAGE APPLICATION'S ROUTES <3
 const Routes = [
     {
@@ -22,7 +22,7 @@ const Routes = [
     }
 ]
 
-function active(e) {    
+function active(e) {
     for (var i = 0; i < document.getElementsByClassName('nav-link').length; i++) {
         document.getElementsByClassName('nav-link')[i].classList.remove("activez")
     }

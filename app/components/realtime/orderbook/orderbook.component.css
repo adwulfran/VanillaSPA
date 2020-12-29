@@ -1,0 +1,8 @@
+.bids { 
+    list-style-type : none;
+    line-height : 30px;
+}
+.asks {
+    list-style-type : none;
+    line-height : 30px;
+}
