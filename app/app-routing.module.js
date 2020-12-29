@@ -34,8 +34,8 @@ window.onhashchange = function () {
     hashStores.push(window.location.hash)
     Routes.forEach(function (el, i) {
         if (window.location.hash === '#' + el.path) {
-            var root = document.getElementById('root');
-            root.innerHTML = el['template'];
+            var router = document.getElementById('router');
+            router.innerHTML = el['template'];
             customElements.get(el['path']) || customElements.define(el['path'], el['component']);
         }
     })
@@ -45,8 +45,8 @@ if (hashStores.length == 0) {
     hashStores.push(window.location.hash)
     Routes.forEach(function (el, i) {
         if (window.location.hash === '#' + el.path) {
-            var root = document.getElementById('root');
-            root.innerHTML = el['template'];
+            var router = document.getElementById('router');
+            router.innerHTML = el['template'];
             customElements.get(el['path']) || customElements.define(el['path'], el['component']);
         }
     })

@@ -1,4 +1,4 @@
-const { TransactionService } = require('./transaction.service.js');
+const { TransactionService } = require('../http-services/transaction.service.js');
 import Chart from 'chart.js';
 
 export const WebSocketService = () => {

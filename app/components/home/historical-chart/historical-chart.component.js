@@ -1,4 +1,4 @@
-const { TransactionService } = require('../../../services/transaction.service.js');
+const { TransactionService } = require('../../../services/http-services/transaction.service.js');
 import Chart from 'chart.js';
 
 export class HistoricalChartComponent extends HTMLElement {
