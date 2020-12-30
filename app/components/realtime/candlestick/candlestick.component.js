@@ -5,12 +5,10 @@ export class CandlestickComponent extends HTMLElement {
     constructor() {
 
         super();
-
-
         var raw_data = [];
-        async function GetTransaction() {
+        async function GetTransaction(period) {
             raw_data = [];
-            await TransactionService().then(data => {
+            await TransactionService(period).then(data => {
                 data.data.ohlc.forEach(function (el, i) {
                     var arr = [];
                     // multiplied by 1000 so that the argument is in milliseconds, not seconds.
@@ -41,10 +39,41 @@ export class CandlestickComponent extends HTMLElement {
             })
         }
 
-        GetTransaction();
+        GetTransaction('60');
         var t = 0;
-        setInterval(function () { t = t + 1; }, 1000)
-        setInterval(function () { GetTransaction(); t = 0; }, 60000)
+        var refreshTime = setInterval(function () {
+            t = t + 1; console.log('t ' + t);
+            if (window.location.hash !== '#realtime-component') {
+                console.log(window.location.hash)
+                clearInterval(refreshTime);
+                clearInterval(refreshGT)
+            }
+        }, 1000)
+        var refreshGT = setInterval(function () { GetTransaction('60'); t = 0; }, 60000)
+
+
+        function period(e, period) {
+            for (var i = 0; i < document.getElementsByClassName('period').length; i++) {
+                document.getElementsByClassName('period')[i].classList.remove("underline_period")
+            }
+            e.classList.add('underline_period');
+            clearInterval(refreshTime);
+            clearInterval(refreshGT);
+            GetTransaction(period);
+            if (period === '60') {
+                t = 0;
+                refreshTime = setInterval(function () {
+                    t = t + 1; console.log('t ' + t);
+                    if (window.location.hash !== '#realtime-component') {
+                        console.log(window.location.hash)
+                        clearInterval(refreshTime);
+                        clearInterval(refreshGT)
+                    }
+                }, 1000)
+                refreshGT = setInterval(function () { GetTransaction('60'); t = 0; }, 60000)
+            }
+        }
+        global.period = period;
 
     }
 

@@ -75,7 +75,7 @@ export const EchartsService = (raw_data) => {
         axisPointer: {
             link: { xAxisIndex: 'all' },
             label: {
-                backgroundColor: '#777'
+                backgroundColor: 'rgb(98, 0, 238)'
             }
         },
         toolbox: {

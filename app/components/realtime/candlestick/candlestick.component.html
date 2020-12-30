@@ -1,3 +1,25 @@
 <candlestick-component>
-    <div id="main" style="width:100%;height:700px"></div>
+    <link rel="stylesheet" href="/style/components/realtime/candlestick/candlestick.component.css">
+    <div class="card text-white"
+        style="text-align:center;color: black !important; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <div class="card-header" style="background-color: #ebebeb !important ;color : #424242">
+            <table>
+                <tr>
+                    <td><strong onclick="period(this,'60')" class="period">Minutes</strong></td>
+                    
+                    <td> <strong  onclick="period(this,'3600')" class="period">Hours</strong>
+                    </td>
+                    <td> <strong  onclick="period(this,'86400')" class="period">Days</strong>
+                    </td>
+                    <td><strong  onclick="period(this,'259200')" class="period">Weeks</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-body">
+            <div id="main"
+                style="width:100%;height:700px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            </div>
+        </div>
+    </div>
 </candlestick-component>

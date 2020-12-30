@@ -20,12 +20,12 @@ export class OrderbookComponent extends HTMLElement {
         websocket_ticker.onmessage = function (evt) {
             if (window.location.hash === '#realtime-component') {
                 var obj = JSON.parse(evt.data)
-                document.getElementsByClassName('card-body')[1].innerText = obj.data.price;
+                document.getElementsByClassName('card-body')[2].innerText = obj.data.price;
                 if (obj.data.type == 0 ){
-                    document.getElementsByClassName('card-body')[1].style.backgroundColor = 'green'
+                    document.getElementsByClassName('card-body')[2].style.color = 'green'
                 }
                 else {
-                    document.getElementsByClassName('card-body')[1].style.backgroundColor = 'red'
+                    document.getElementsByClassName('card-body')[2].style.color = 'red'
                 }
                
             } else {
@@ -41,10 +41,10 @@ export class OrderbookComponent extends HTMLElement {
         for (var i = 0; i < 10; i++) {
             var liBids = document.createElement('li');
             liBids.className = 'bids';
-            document.getElementsByClassName('card-body')[2].appendChild(liBids)
+            document.getElementsByClassName('card-body')[3].appendChild(liBids)
             var liAsks = document.createElement('li');
             liAsks.className = 'asks';
-            document.getElementsByClassName('card-body')[0].appendChild(liAsks)
+            document.getElementsByClassName('card-body')[1].appendChild(liAsks)
         }
         var websocket_orderbook = new WebSocket('wss://ws.bitstamp.net');
         const message_bookorder = {

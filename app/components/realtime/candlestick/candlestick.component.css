@@ -1,0 +1,11 @@
+.underline_period { 
+  color :  #6200ee;
+  border-bottom: 3px solid #6200ee;
+  padding-bottom: 3px
+}
+
+
+
+td { 
+  padding: 10px;
+}

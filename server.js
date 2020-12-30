@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var dist = path.join(__dirname, 'dist/');
-var style = path.join(__dirname, 'app/components/');
+var style = path.join(__dirname, 'app/');
 
 
 app.use(bodyParser.json());

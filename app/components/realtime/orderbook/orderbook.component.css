@@ -1,8 +1,11 @@
-.bids { 
+.bids, .asks { 
     list-style-type : none;
-    line-height : 30px;
+    line-height : 25px;
+    font-size: 80%;
+    color : #424242
 }
-.asks {
-    list-style-type : none;
-    line-height : 30px;
+
+.card-body {
+    padding : 0px !important; 
 }
+
