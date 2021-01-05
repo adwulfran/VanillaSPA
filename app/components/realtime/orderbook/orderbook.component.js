@@ -1,4 +1,7 @@
 
+import LoaderComponentHTML from '../../loader/loader.component.html';
+import { LoaderComponent } from '../../loader/loader.component.js';
+
 export class OrderbookComponent extends HTMLElement {
 
     constructor() {
@@ -9,6 +12,7 @@ export class OrderbookComponent extends HTMLElement {
             ------------------------------TICKER------------------------------------
             ------------------------------------------------------------------------
         */
+
         var websocket_ticker = new WebSocket('wss://ws.bitstamp.net');
         const message_ticker = {
             event: "bts:subscribe",
@@ -16,28 +20,37 @@ export class OrderbookComponent extends HTMLElement {
                 channel: "live_trades_btcusd"
             }
         };
+        var checkToLoad = 0;
         websocket_ticker.onopen = function (evt) { websocket_ticker.send(JSON.stringify(message_ticker)) };
         websocket_ticker.onmessage = function (evt) {
+            checkToLoad = checkToLoad + 1;
             if (window.location.hash === '#realtime-component') {
                 var obj = JSON.parse(evt.data)
-                document.getElementsByClassName('card-body')[2].innerText = obj.data.price;
-                if (obj.data.type == 0 ){
-                    document.getElementsByClassName('card-body')[2].style.color = 'green'
+                if (obj.data.price !== undefined) {
+                    document.getElementsByClassName('card-body')[2].innerText = obj.data.price;
+                    if (obj.data.type == 0) {
+                        document.getElementsByClassName('card-body')[2].style.color = 'green'
+                    }
+                    else {
+                        document.getElementsByClassName('card-body')[2].style.color = 'red'
+                    }
                 }
                 else {
-                    document.getElementsByClassName('card-body')[2].style.color = 'red'
+                    document.getElementsByClassName('card-body')[2].innerHTML = LoaderComponentHTML
+                    customElements.get('loader-component') || customElements.define('loader-component', LoaderComponent);
                 }
-               
+
             } else {
                 websocket_ticker.close()
             }
         }
 
 
-         /* ------------------------------------------------------------------------
-            ------------------------------ORDERBOOK---------------------------------
-            ------------------------------------------------------------------------
-        */
+
+        /* ------------------------------------------------------------------------
+           ------------------------------ORDERBOOK---------------------------------
+           ------------------------------------------------------------------------
+       */
         for (var i = 0; i < 10; i++) {
             var liBids = document.createElement('li');
             liBids.className = 'bids';
@@ -59,19 +72,19 @@ export class OrderbookComponent extends HTMLElement {
                 var obj = JSON.parse(evt.data)
                 if (obj.data.bids !== undefined && obj.data.asks !== undefined) {
                     obj.data.bids.slice(0, 10).forEach(function (el, i) {
-                       document.getElementsByClassName('bids')[i].innerHTML =  el[0] + '&nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1]
+                        document.getElementsByClassName('bids')[i].innerHTML = el[0] + '&nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1]
                     })
                     obj.data.asks.slice(0, 10).reverse().forEach(function (el, i) {
-                        document.getElementsByClassName('asks')[i].innerHTML =  el[0] + ' &nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1]
-                     })
+                        document.getElementsByClassName('asks')[i].innerHTML = el[0] + ' &nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1]
+                    })
                 }
 
-                
-    
+
+
             } else {
                 websocket_orderbook.close()
             }
-    
+
         }
 
     }

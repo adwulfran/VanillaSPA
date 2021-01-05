@@ -75,7 +75,7 @@ export class CandlestickComponent extends HTMLElement {
             if (period === '60') {
                 t = 0;
                 refreshTime = setInterval(function () {
-                    t = t + 1; console.log('t ' + t);
+                    t = t + 1;
                     if (window.location.hash !== '#realtime-component') {
                         console.log(window.location.hash)
                         clearInterval(refreshTime);
