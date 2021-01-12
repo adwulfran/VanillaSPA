@@ -1,22 +1,15 @@
 const { TransactionService } = require('../../../services/http-services/transaction.service.js');
 const { EchartsService } = require('../../../services/echarts-services/echarts.services.js');
-import LoaderComponentHTML from '../../loader/loader.component.html';
-import { LoaderComponent } from '../../loader/loader.component.js';
-
 
 export class CandlestickComponent extends HTMLElement {
-
     constructor() {
 
         super();
+        
         var raw_data = [];
         async function GetTransaction(period) {
-            var loader = document.createElement('div');
-            loader.innerHTML = LoaderComponentHTML;
-            document.getElementsByClassName('card-body')[0].prepend(loader);
-            customElements.get('loader-component') || customElements.define('loader-component', LoaderComponent);
-            document.getElementById('main').style.display = 'none'
-            raw_data = [];
+
+            raw_data = []; 
             await TransactionService(period).then(data => {
                 data.data.ohlc.forEach(function (el, i) {
                     var arr = [];
@@ -44,13 +37,12 @@ export class CandlestickComponent extends HTMLElement {
                     arr.push(getTimeString(date), Number(el.open), Number(el.close), Number(el.low), Number(el.high), Number(volumez))
                     raw_data.push(arr);
                 })
-                document.getElementById('main').style.display = 'flex'
                 EchartsService(raw_data);
-                document.getElementsByTagName('loader-component')[0].remove()
             })
         }
 
         GetTransaction('60');
+
         var t = 0;
         var refreshTime = setInterval(function () {
             t = t + 1; console.log('t ' + t);
@@ -59,12 +51,11 @@ export class CandlestickComponent extends HTMLElement {
                 clearInterval(refreshTime);
                 clearInterval(refreshGT)
             }
-        }, 1000)
+        }, 1000);
+
         var refreshGT = setInterval(function () { GetTransaction('60'); t = 0; }, 60000)
 
-        function period(e, period) {
-          
-           
+        global.period = function period(e, period) {
             for (var i = 0; i < document.getElementsByClassName('period').length; i++) {
                 document.getElementsByClassName('period')[i].classList.remove("underline_period")
             }
@@ -76,6 +67,7 @@ export class CandlestickComponent extends HTMLElement {
                 t = 0;
                 refreshTime = setInterval(function () {
                     t = t + 1;
+                    console.log('t '+t)
                     if (window.location.hash !== '#realtime-component') {
                         console.log(window.location.hash)
                         clearInterval(refreshTime);
@@ -86,8 +78,7 @@ export class CandlestickComponent extends HTMLElement {
             }
             
         }
-        global.period = period;
-
+       
     }
 
 }
