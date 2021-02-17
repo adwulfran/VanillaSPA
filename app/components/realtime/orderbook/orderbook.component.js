@@ -12,11 +12,7 @@ export class OrderbookComponent extends HTMLElement {
             ------------------------------TICKER------------------------------------
             ------------------------------------------------------------------------
         */
-        
-        var price = new Observable('price')
-        var username = new Observable('username');
-        username.subscribe('Adrien') 
-       
+        var price = new Observable('price');
         var websocket_ticker = new WebSocket('wss://ws.bitstamp.net');
         const message_ticker = {
             event: "bts:subscribe",
