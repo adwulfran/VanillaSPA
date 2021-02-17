@@ -1,4 +1,4 @@
-# SonicSPA
+# VanillaSPA  :rocket:
 
 Light and fast Single Page Application with pure javascript. It only use ExpressJS to serve index.html and Webpack to build files
 
@@ -10,3 +10,6 @@ Light and fast Single Page Application with pure javascript. It only use Express
 
 ## Run
 1. `npm start`: build files and execute Express server
+
+## Preview
+![Preview](https://raw.githubusercontent.com/adwulfran/SonicSPA/master/sonicspa.png "Preview")
