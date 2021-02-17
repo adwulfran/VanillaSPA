@@ -1,4 +1,4 @@
-
+import { Observable } from '../../../observable.js'
 import LoaderComponentHTML from '../../loader/loader.component.html';
 import { LoaderComponent } from '../../loader/loader.component.js';
 
@@ -12,7 +12,11 @@ export class OrderbookComponent extends HTMLElement {
             ------------------------------TICKER------------------------------------
             ------------------------------------------------------------------------
         */
-
+        
+        var price = new Observable('price')
+        var username = new Observable('username');
+        username.subscribe('Adrien') 
+       
         var websocket_ticker = new WebSocket('wss://ws.bitstamp.net');
         const message_ticker = {
             event: "bts:subscribe",
@@ -23,11 +27,13 @@ export class OrderbookComponent extends HTMLElement {
         var checkToLoad = 0;
         websocket_ticker.onopen = function (evt) { websocket_ticker.send(JSON.stringify(message_ticker)) };
         websocket_ticker.onmessage = function (evt) {
+            console.log('check ?? ' + this.nom)
+            //new OnInit();
             checkToLoad = checkToLoad + 1;
             if (window.location.hash === '#realtime-component') {
                 var obj = JSON.parse(evt.data)
-                if (obj.data.price !== undefined) {
-                    document.getElementsByClassName('card-body')[2].innerText = obj.data.price;
+                if (obj.data.price !== undefined) {     
+                    price.subscribe(obj.data.price)
                     if (obj.data.type == 0) {
                         document.getElementsByClassName('card-body')[2].style.color = 'green'
                     }
@@ -44,7 +50,6 @@ export class OrderbookComponent extends HTMLElement {
                 websocket_ticker.close()
             }
         }
-
 
 
         /* ------------------------------------------------------------------------

@@ -8,7 +8,6 @@ export class CandlestickComponent extends HTMLElement {
         
         var raw_data = [];
         async function GetTransaction(period) {
-
             raw_data = []; 
             await TransactionService(period).then(data => {
                 data.data.ohlc.forEach(function (el, i) {

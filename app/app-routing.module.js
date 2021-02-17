@@ -4,6 +4,7 @@ import { ContactComponent } from './components/contact/contact.component.js';
 import ContactComponentHTML from './components/contact/contact.component.html';
 import { RealtimeComponent } from './components/realtime/realtime.component.js';
 import RealtimeComponentHTML from './components/realtime/realtime.component.html';
+
 // SINGLE PAGE APPLICATION'S ROUTES <3
 const Routes = [
     {
