@@ -1,6 +1,6 @@
 # VanillaSPA  :rocket:
 
-Light and fast Single Page Application with pure javascript. It only use ExpressJS to serve index.html and Webpack to build files
+Light and fast Single Page Application with pure ES6 javascript. It only use ExpressJS to serve index.html and Webpack to build files
 
 0 front-end dependency 
 
