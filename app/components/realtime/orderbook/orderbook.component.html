@@ -1,20 +1,18 @@
-<orderbook-component>
-    <link rel="stylesheet" href="/style/components/realtime/orderbook/orderbook.component.css">
-    <div class="card text-white mb-3"
-        style="max-width: 18rem;text-align:center;color: black !important; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-        <div class="card-header" style="background-color: #ebebeb !important ;color: #6200ee"><strong>BTC/USD</strong>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title"></h5>
-            <p class="card-text"></p>
-        </div>
-        <div class="card-body" data-bind="price" style="font-size: 30px;">
-            <h5 class="card-title"></h5>
-            <p class="card-text"></p>
-        </div>
-        <div class="card-body liveprice">
-            <h5 class="card-title"  ></h5>
-            <p class="card-text"></p>
-        </div>
+<link rel="stylesheet" href="/style/components/realtime/orderbook/orderbook.component.css">
+<div class="card text-white mb-3"
+    style="max-width: 18rem;text-align:center;color: black !important; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <div class="card-header" style="background-color: #ebebeb !important ;color: #6200ee"><strong>BTC/USD</strong>
     </div>
-</orderbook-component>
+    <div class="card-body" id="asks">
+        <h5 class="card-title"></h5>
+        <p class="card-text"></p>
+    </div>
+    <div class="card-body" bind-class="type" bind-text="price" style="font-size: 30px;">
+        <h5 class="card-title"></h5>
+        <p class="card-text"></p>
+    </div>
+    <div class="card-body" id="bids">
+        <h5 class="card-title"></h5>
+        <p class="card-text"></p>
+    </div>
+</div>

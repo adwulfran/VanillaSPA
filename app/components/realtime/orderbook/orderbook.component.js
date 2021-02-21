@@ -2,6 +2,7 @@ import { Observable } from '../../../observable.js'
 import LoaderComponentHTML from '../../loader/loader.component.html';
 import { LoaderComponent } from '../../loader/loader.component.js';
 
+
 export class OrderbookComponent extends HTMLElement {
 
     constructor() {
@@ -13,6 +14,7 @@ export class OrderbookComponent extends HTMLElement {
             ------------------------------------------------------------------------
         */
         var price = new Observable('price');
+        var type = new Observable('type');
         var websocket_ticker = new WebSocket('wss://ws.bitstamp.net');
         const message_ticker = {
             event: "bts:subscribe",
@@ -23,18 +25,17 @@ export class OrderbookComponent extends HTMLElement {
         var checkToLoad = 0;
         websocket_ticker.onopen = function (evt) { websocket_ticker.send(JSON.stringify(message_ticker)) };
         websocket_ticker.onmessage = function (evt) {
-            console.log('check ?? ' + this.nom)
-            //new OnInit();
             checkToLoad = checkToLoad + 1;
             if (window.location.hash === '#realtime-component') {
                 var obj = JSON.parse(evt.data)
-                if (obj.data.price !== undefined) {     
+                console.log(obj)
+                if (obj.data.price !== undefined) {
                     price.subscribe(obj.data.price)
                     if (obj.data.type == 0) {
-                        document.getElementsByClassName('card-body')[2].style.color = 'green'
+                        type.subscribe('buy')
                     }
                     else {
-                        document.getElementsByClassName('card-body')[2].style.color = 'red'
+                        type.subscribe('sell')
                     }
                 }
                 else {
@@ -52,13 +53,20 @@ export class OrderbookComponent extends HTMLElement {
            ------------------------------ORDERBOOK---------------------------------
            ------------------------------------------------------------------------
        */
+        var bidsArr = [];
+        var asksArr = []
         for (var i = 0; i < 10; i++) {
             var liBids = document.createElement('li');
             liBids.className = 'bids';
-            document.getElementsByClassName('card-body')[3].appendChild(liBids)
+            liBids.setAttribute("bind-text", "bids-" + i.toString())
+            document.getElementById('bids').appendChild(liBids);
+            bidsArr.push(new Observable('bids-' + i))
+
             var liAsks = document.createElement('li');
             liAsks.className = 'asks';
-            document.getElementsByClassName('card-body')[1].appendChild(liAsks)
+            liAsks.setAttribute("bind-text", "asks-" + i.toString())
+            document.getElementById('asks').appendChild(liAsks);
+            asksArr.push(new Observable('asks-' + i))
         }
         var websocket_orderbook = new WebSocket('wss://ws.bitstamp.net');
         const message_bookorder = {
@@ -73,10 +81,10 @@ export class OrderbookComponent extends HTMLElement {
                 var obj = JSON.parse(evt.data)
                 if (obj.data.bids !== undefined && obj.data.asks !== undefined) {
                     obj.data.bids.slice(0, 10).forEach(function (el, i) {
-                        document.getElementsByClassName('bids')[i].innerHTML = el[0] + '&nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1]
+                        bidsArr[i].subscribe(el[0] + '&nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1])
                     })
                     obj.data.asks.slice(0, 10).reverse().forEach(function (el, i) {
-                        document.getElementsByClassName('asks')[i].innerHTML = el[0] + ' &nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1]
+                        asksArr[i].subscribe(el[0] + ' &nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1])
                     })
                 }
 

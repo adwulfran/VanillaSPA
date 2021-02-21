@@ -9,10 +9,10 @@ export class RealtimeComponent extends HTMLElement {
 
         super();
 
-        document.getElementsByClassName('candlestick')[0].innerHTML = CandlestickComponentHTML
+        document.getElementsByTagName('candlestick-component')[0].innerHTML = CandlestickComponentHTML
         customElements.get('candlestick-component') || customElements.define('candlestick-component', CandlestickComponent);
 
-        document.getElementsByClassName('orderbook')[0].innerHTML = OrderbookComponentHTML
+        document.getElementsByTagName('orderbook-component')[0].innerHTML = OrderbookComponentHTML
         customElements.get('orderbook-component') || customElements.define('orderbook-component', OrderbookComponent);
 
     }

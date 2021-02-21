@@ -9,3 +9,11 @@
     padding : 0px !important; 
 }
 
+.sell {
+    color: red;
+}
+
+.buy {
+    color : green;
+}
+

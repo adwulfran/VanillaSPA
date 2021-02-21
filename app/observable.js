@@ -4,7 +4,18 @@ export class Observable {
 
         this.data = {
             set current(a) {
-                document.querySelector("[data-bind='" + data + "']").innerText = a;
+                if (document.querySelector("[bind-text='" + data + "']") != undefined){
+                document.querySelector("[bind-text='" + data + "']").innerHTML = a;
+                }
+                else if (document.querySelector("[bind-class='" + data + "']") != undefined){
+                    if(document.querySelector("[bind-class='" + data + "']").classList != undefined){
+                        console.log('alor?')
+                        document.querySelector("[bind-class='" + data + "']").className = a;
+                    }
+                    else {
+                        document.querySelector("[bind-class='" + data + "']").classList.add = a;
+                    }
+                }
             }
         }
 
