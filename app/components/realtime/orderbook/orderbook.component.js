@@ -39,7 +39,7 @@ export class OrderbookComponent extends HTMLElement {
                     }
                 }
                 else {
-                    document.getElementsByClassName('card-body')[2].innerHTML = LoaderComponentHTML
+                    price.subscribe(LoaderComponentHTML)
                     customElements.get('loader-component') || customElements.define('loader-component', LoaderComponent);
                 }
 
