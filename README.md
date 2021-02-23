@@ -1,6 +1,6 @@
 # VanillaSPA  :rocket:
 
-Light and fast Single Page Application with pure ES6 javascript. It only use ExpressJS to serve index.html and Webpack to build files
+Light and fast Single Page Application with pure ES6 javascript. It only use webpack to build files
 
 0 front-end dependency 
 
@@ -9,7 +9,8 @@ Light and fast Single Page Application with pure ES6 javascript. It only use Exp
 2. From project root folder install all the dependencies: `npm i`
 
 ## Run
-1. `npm start`: build files and execute Express server
+1. `npm start`: build files with webpack 
+2. Open app/index.html file in your browser
 
 ## Demo
 https://adwulfran.github.io/app/index.html
