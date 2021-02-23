@@ -21,7 +21,7 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
       },
-      { test: /\.css$/, use: ['css-loader'] }
+      { test: /\.css$/,  use: ['css-loader'] }
     ],
   },
   watch: true

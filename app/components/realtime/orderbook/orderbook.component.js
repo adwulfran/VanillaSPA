@@ -40,7 +40,7 @@ export class OrderbookComponent extends HTMLElement {
                     }
                 }
                 else {
-                   loader.render({'path': 'loader-component', 'template': [LoaderComponentHTML, LoaderComponentCss]})
+                   loader.subrender({'path': 'loader-component', 'template': LoaderComponentHTML, 'style' : LoaderComponentCss})
                 }
 
             } else {
