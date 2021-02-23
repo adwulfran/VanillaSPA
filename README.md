@@ -11,5 +11,8 @@ Light and fast Single Page Application with pure ES6 javascript. It only use Exp
 ## Run
 1. `npm start`: build files and execute Express server
 
+## Demo
+https://adwulfran.github.io/app/index.html
+
 ## Preview
 ![Preview](https://raw.githubusercontent.com/adwulfran/SonicSPA/master/sonicspa.png "Preview")
