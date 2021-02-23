@@ -1,6 +1,7 @@
-import { Observable } from '../../../observable.js'
+import { Observable } from '../../../observable.js';
+import { Component } from '../../../component.js';
 import LoaderComponentHTML from '../../loader/loader.component.html';
-import { LoaderComponent } from '../../loader/loader.component.js';
+import LoaderComponentCss from '../../loader/loader.component.css';
 
 
 export class OrderbookComponent extends HTMLElement {
@@ -14,6 +15,7 @@ export class OrderbookComponent extends HTMLElement {
         */
         var price = new Observable('price');
         var type = new Observable('type');
+        var loader = new Component();
         var websocket_ticker = new WebSocket('wss://ws.bitstamp.net');
         const message_ticker = {
             event: "bts:subscribe",
@@ -38,8 +40,7 @@ export class OrderbookComponent extends HTMLElement {
                     }
                 }
                 else {
-                    price.subscribe(LoaderComponentHTML)
-                    customElements.get('loader-component') || customElements.define('loader-component', LoaderComponent);
+                   loader.render({'path': 'loader-component', 'template': [LoaderComponentHTML, LoaderComponentCss]})
                 }
 
             } else {

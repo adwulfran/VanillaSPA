@@ -8,7 +8,8 @@ module.exports = {
     'realtime-component' : './app/components/realtime/realtime.component.js',
     'contact-component' : './app/components/contact/contact.component.js',
     'candlestick-component': './app/components/realtime/candlestick/candlestick.component.js',
-    'orderbook-component': './app/components/realtime/orderbook/orderbook.component.js'
+    'orderbook-component': './app/components/realtime/orderbook/orderbook.component.js',
+    'loader-component': './app/components/loader/loader.component.js'
   },
   output: {
     filename: '[name].js',
