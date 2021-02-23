@@ -9,7 +9,6 @@ export class Observable {
                 }
                 else if (document.querySelector("[bind-class='" + data + "']") != undefined){
                     if(document.querySelector("[bind-class='" + data + "']").classList != undefined){
-                        console.log('alor?')
                         document.querySelector("[bind-class='" + data + "']").className = a;
                     }
                     else {

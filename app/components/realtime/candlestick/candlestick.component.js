@@ -81,3 +81,5 @@ export class CandlestickComponent extends HTMLElement {
     }
 
 }
+
+customElements.get('candlestick-component') || customElements.define('candlestick-component', CandlestickComponent);

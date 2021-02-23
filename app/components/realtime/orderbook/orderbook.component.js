@@ -8,7 +8,6 @@ export class OrderbookComponent extends HTMLElement {
     constructor() {
 
         super();
-
         /*  ------------------------------------------------------------------------
             ------------------------------TICKER------------------------------------
             ------------------------------------------------------------------------
@@ -87,15 +86,13 @@ export class OrderbookComponent extends HTMLElement {
                         asksArr[i].subscribe(el[0] + ' &nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1])
                     })
                 }
-
-
-
             } else {
                 websocket_orderbook.close()
             }
-
         }
 
     }
 
 }
+
+customElements.get('orderbook-component') || customElements.define('orderbook-component', OrderbookComponent);

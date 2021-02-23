@@ -2,11 +2,16 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: [
-    './app/app-routing.module.js'
-  ],
+  entry: {
+    'main': './app/app-routing.module.js',
+    'home-component' : './app/components/home/home.component.js',
+    'realtime-component' : './app/components/realtime/realtime.component.js',
+    'contact-component' : './app/components/contact/contact.component.js',
+    'candlestick-component': './app/components/realtime/candlestick/candlestick.component.js',
+    'orderbook-component': './app/components/realtime/orderbook/orderbook.component.js'
+  },
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
@@ -15,6 +20,7 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
       },
+      { test: /\.css$/, use: ['css-loader'] }
     ],
   },
   watch: true
