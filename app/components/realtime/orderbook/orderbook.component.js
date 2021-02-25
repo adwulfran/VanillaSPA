@@ -4,11 +4,10 @@ import LoaderComponentHTML from '../../loader/loader.component.html';
 import LoaderComponentCss from '../../loader/loader.component.css';
 
 
-export class OrderbookComponent extends HTMLElement {
+export class OrderbookComponent  {
 
     constructor() {
 
-        super();
         /*  ------------------------------------------------------------------------
             ------------------------------TICKER------------------------------------
             ------------------------------------------------------------------------
@@ -40,7 +39,7 @@ export class OrderbookComponent extends HTMLElement {
                     }
                 }
                 else {
-                   loader.subrender({'path': 'loader-component', 'template': LoaderComponentHTML, 'style' : LoaderComponentCss})
+                   loader.render({'path': 'loader-component', 'template': LoaderComponentHTML, 'style' : LoaderComponentCss})
                 }
 
             } else {
@@ -96,4 +95,4 @@ export class OrderbookComponent extends HTMLElement {
 
 }
 
-customElements.get('orderbook-component') || customElements.define('orderbook-component', OrderbookComponent);
+new OrderbookComponent()

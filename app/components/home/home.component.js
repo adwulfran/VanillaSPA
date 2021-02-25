@@ -11,15 +11,12 @@ new Component().render({
     'style': HomeComponentCss
 })
 
-export class HomeComponent extends HTMLElement {
+export class HomeComponent {
 
     constructor() {
-
-        super();
-        var title = new Observable("title");
-        title.subscribe("Hello Home");
-
+        this.title = new Observable('title')
+        this.title.subscribe("Hello Home");
     }
+    
 }
-
-customElements.get('home-component') || customElements.define('home-component', HomeComponent);
+new HomeComponent()

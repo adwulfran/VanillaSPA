@@ -1,9 +1,11 @@
+// webpack needs to be explicitly required
+const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
   mode: 'development',
   entry: {
-    'main': './app/app-routing.module.js',
+    'router': './app/router.js',
     'home-component' : './app/components/home/home.component.js',
     'realtime-component' : './app/components/realtime/realtime.component.js',
     'contact-component' : './app/components/contact/contact.component.js',
@@ -21,9 +23,12 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
       },
-      { test: /\.css$/,  use: ['css-loader'] }
-    ],
+      { test: /\.css$/,  use: ['style-loader','css-loader'] },
+
+      
+    ]
   },
-  watch: true
+  watch: true,
+  
 };
 

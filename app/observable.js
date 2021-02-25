@@ -1,7 +1,6 @@
 export class Observable {
 
     constructor(data) {
-
         this.data = {
             set current(a) {
                 if (document.querySelector("[bind-text='" + data + "']") != undefined){
@@ -17,7 +16,6 @@ export class Observable {
                 }
             }
         }
-
     }
     
     subscribe(param) {

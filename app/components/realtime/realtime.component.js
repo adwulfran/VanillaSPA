@@ -15,18 +15,17 @@ new Component().render({
     'template': RealtimeComponentHTML, 
     'style': RealtimeComponentCss
 })
-export class RealtimeComponent extends HTMLElement {
+export class RealtimeComponent  {
 
     constructor() {
 
-        super();
-        var component = new Component();
-        component.subrender({
+        this.component = new Component();
+        this.component.render({
             'path': 'candlestick-component', 
             'template': CandlestickComponentHTML, 
             'style' : CandlestickComponentCss 
         });
-        component.subrender({
+        this.component.render({
             'path': 'orderbook-component',
             'template': OrderbookComponentHTML,
             'style' : OrderbookComponentCss 
@@ -36,4 +35,4 @@ export class RealtimeComponent extends HTMLElement {
 
 }
 
-customElements.get('realtime-component') || customElements.define('realtime-component', RealtimeComponent);
+new RealtimeComponent()

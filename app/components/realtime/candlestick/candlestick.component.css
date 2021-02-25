@@ -4,8 +4,11 @@
   padding-bottom: 3px
 }
 
-
-
 td { 
   padding: 10px;
+}
+@media only screen and (max-width: 600px) {
+  candlestick-component {
+      display : none;
+  }
 }
