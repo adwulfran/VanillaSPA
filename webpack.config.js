@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   entry: {
-    'router': './app/router.js',
+    'app-routing.module': './app/app-routing.module.js',
     'home-component' : './app/components/home/home.component.js',
     'realtime-component' : './app/components/realtime/realtime.component.js',
     'contact-component' : './app/components/contact/contact.component.js',

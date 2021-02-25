@@ -1,5 +1,5 @@
 import { Component } from '../../component.js'
-
+import {Observable } from '../../observable.js'
 // component's template + style
 import ContactComponentHTML from './contact.component.html';
 import ContactComponentCss from './contact.component.css';
@@ -10,13 +10,12 @@ new Component().render({
     'style': ContactComponentCss
 })
 
-export class ContactComponent extends HTMLElement {
+export class ContactComponent {
 
     constructor() {
-        
-        super();
-        
+        this.email = new Observable('email');
+        this.email.subscribe('adrienwulfran@gmail.com')
     }
+    
 }
-
-customElements.get('contact-component') || customElements.define('contact-component', ContactComponent);
+ new ContactComponent()

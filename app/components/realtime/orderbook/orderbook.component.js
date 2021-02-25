@@ -3,7 +3,6 @@ import { Component } from '../../../component.js';
 import LoaderComponentHTML from '../../loader/loader.component.html';
 import LoaderComponentCss from '../../loader/loader.component.css';
 
-
 export class OrderbookComponent  {
 
     constructor() {

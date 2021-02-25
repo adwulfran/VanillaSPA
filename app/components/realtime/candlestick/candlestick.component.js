@@ -1,11 +1,10 @@
-const { TransactionService } = require('../../../services/http-services/transaction.service.js');
-const { EchartsService } = require('../../../services/echarts-services/echarts.services.js');
+import { TransactionService } from '../../../services/http-services/transaction.service.js';
+import { EchartsService } from '../../../services/echarts-services/echarts.services.js';
 
-export class CandlestickComponent extends HTMLElement {
-    constructor() {
 
-        super();
-        
+export class CandlestickComponent {
+
+    constructor() {        
         var raw_data = [];
         async function GetTransaction(period) {
             raw_data = []; 
@@ -82,4 +81,4 @@ export class CandlestickComponent extends HTMLElement {
 
 }
 
-customElements.get('candlestick-component') || customElements.define('candlestick-component', CandlestickComponent);
+new CandlestickComponent()
