@@ -1,4 +1,4 @@
-import { Component } from '../../component.js';
+import { Component } from '../../component';
 
 // component's template + style
 import RealtimeComponentHTML from './realtime.component.html';
@@ -14,11 +14,10 @@ new Component().render({
     'path': 'realtime-component', 
     'template': RealtimeComponentHTML, 
     'style': RealtimeComponentCss
-})
+}) 
 export class RealtimeComponent  {
-
     constructor() {
-
+        
         this.component = new Component();
         this.component.render({
             'path': 'candlestick-component', 
@@ -32,7 +31,6 @@ export class RealtimeComponent  {
         })
 
     }
-
 }
 
 new RealtimeComponent()

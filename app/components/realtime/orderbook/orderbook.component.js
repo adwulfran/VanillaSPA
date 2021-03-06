@@ -1,12 +1,10 @@
-import { Observable } from '../../../observable.js';
-import { Component } from '../../../component.js';
+import { Observable } from '../../../observable';
+import { Component } from '../../../component';
 import LoaderComponentHTML from '../../loader/loader.component.html';
 import LoaderComponentCss from '../../loader/loader.component.css';
 
-export class OrderbookComponent  {
-
+export class OrderbookComponent {
     constructor() {
-
         /*  ------------------------------------------------------------------------
             ------------------------------TICKER------------------------------------
             ------------------------------------------------------------------------
@@ -22,8 +20,8 @@ export class OrderbookComponent  {
             }
         };
         var checkToLoad = 0;
-        websocket_ticker.onopen = function (evt) { websocket_ticker.send(JSON.stringify(message_ticker)) };
-        websocket_ticker.onmessage = function (evt) {
+        websocket_ticker.onopen = (evt) => { websocket_ticker.send(JSON.stringify(message_ticker)) };
+        websocket_ticker.onmessage = (evt) => {
             checkToLoad = checkToLoad + 1;
             if (window.location.hash === '#realtime-component') {
                 var obj = JSON.parse(evt.data)
@@ -38,33 +36,31 @@ export class OrderbookComponent  {
                     }
                 }
                 else {
-                   loader.render({'path': 'loader-component', 'template': LoaderComponentHTML, 'style' : LoaderComponentCss})
+                    loader.render({ 'path': 'loader-component', 'template': LoaderComponentHTML, 'style': LoaderComponentCss })
                 }
 
             } else {
                 websocket_ticker.close()
             }
         }
-
-
         /* ------------------------------------------------------------------------
            ------------------------------ORDERBOOK---------------------------------
            ------------------------------------------------------------------------
        */
-        var bidsArr = [];
-        var asksArr = []
+        this.bidsArr = [];
+        this.asksArr = [];
         for (var i = 0; i < 10; i++) {
             var liBids = document.createElement('li');
             liBids.className = 'bids';
             liBids.setAttribute("bind-text", "bids-" + i.toString())
             document.getElementById('bids').appendChild(liBids);
-            bidsArr.push(new Observable('bids-' + i))
+            this.bidsArr.push(new Observable('bids-' + i))
 
             var liAsks = document.createElement('li');
             liAsks.className = 'asks';
             liAsks.setAttribute("bind-text", "asks-" + i.toString())
             document.getElementById('asks').appendChild(liAsks);
-            asksArr.push(new Observable('asks-' + i))
+            this.asksArr.push(new Observable('asks-' + i))
         }
         var websocket_orderbook = new WebSocket('wss://ws.bitstamp.net');
         const message_bookorder = {
@@ -73,16 +69,16 @@ export class OrderbookComponent  {
                 channel: "order_book_btcusd"
             }
         };
-        websocket_orderbook.onopen = function (evt) { websocket_orderbook.send(JSON.stringify(message_bookorder)) };
-        websocket_orderbook.onmessage = function (evt) {
+        websocket_orderbook.onopen = () => { websocket_orderbook.send(JSON.stringify(message_bookorder)) };
+        websocket_orderbook.onmessage = (evt) => {
             if (window.location.hash === '#realtime-component') {
                 var obj = JSON.parse(evt.data)
                 if (obj.data.bids !== undefined && obj.data.asks !== undefined) {
-                    obj.data.bids.slice(0, 10).forEach(function (el, i) {
-                        bidsArr[i].subscribe(el[0] + '&nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1])
+                    obj.data.bids.slice(0, 10).forEach((el, i) => {
+                        this.bidsArr[i].subscribe(el[0] + '&nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1])
                     })
-                    obj.data.asks.slice(0, 10).reverse().forEach(function (el, i) {
-                        asksArr[i].subscribe(el[0] + ' &nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1])
+                    obj.data.asks.slice(0, 10).reverse().forEach((el, i) => {
+                        this.asksArr[i].subscribe(el[0] + ' &nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1])
                     })
                 }
             } else {
@@ -93,5 +89,4 @@ export class OrderbookComponent  {
     }
 
 }
-
 new OrderbookComponent()
