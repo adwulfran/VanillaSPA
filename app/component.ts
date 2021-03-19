@@ -1,11 +1,15 @@
+declare module globalThis {
+    let routes: any;
+}
 
 export class Component {
-
+    
     constructor() {
+        
     }
-
-    render(el) {
-        if (globalThis.routes.findIndex(x => x.path === el['path']) !== -1) {
+    
+    render(el:any) {
+        if (globalThis.routes.findIndex((x:any) => x.path === el['path']) !== -1) {
             var root = document.getElementById('root');
             root.innerHTML = `<` + el['path'] + `>` + el['template'] + `</` + el['path'] + `>`;
             var style = document.createElement('style');
@@ -19,7 +23,12 @@ export class Component {
             nested_comp.innerHTML = el['template'];
             nested_comp.appendChild(style);
             var script = document.createElement('script');
-            script.src = "../dist/" + el['path'] + ".js"
+            if (el['path'] === 'home-component') {
+                script.src = "../dist/" + el['path'] + ".ts"
+            }
+            else {
+                script.src = "../dist/" + el['path'] + ".js"
+            }
             nested_comp.appendChild(script)
         }
     }
