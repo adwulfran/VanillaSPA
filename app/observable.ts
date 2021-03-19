@@ -1,8 +1,9 @@
 export class Observable {
+    _data: any;
 
-    constructor(data) {
-        this.data = {
-            set current(a) {
+    constructor(data:any) {
+    this._data = {
+            set current(a:any) {
                 if (document.querySelector("[bind-text='" + data + "']") != undefined){
                 document.querySelector("[bind-text='" + data + "']").innerHTML = a;
                 }
@@ -18,8 +19,7 @@ export class Observable {
         }
     }
     
-    subscribe(param) {
-        this.data.current = param;
+   subscribe(param:any) {
+        this._data.current = param;
     }
-
 }

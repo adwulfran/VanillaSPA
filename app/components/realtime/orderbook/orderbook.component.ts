@@ -1,17 +1,18 @@
 import { Observable } from '../../../observable';
 import { Component } from '../../../component';
-import LoaderComponentHTML from '../../loader/loader.component.html';
-import LoaderComponentCss from '../../loader/loader.component.css';
 
 export class OrderbookComponent {
+    price:any = new Observable('price');
+    type:any = new Observable('type');
+    loader:any = new Component();
+    bidsArr:any = [];
+    asksArr:any = [];
     constructor() {
         /*  ------------------------------------------------------------------------
             ------------------------------TICKER------------------------------------
             ------------------------------------------------------------------------
         */
-        var price = new Observable('price');
-        var type = new Observable('type');
-        var loader = new Component();
+
         var websocket_ticker = new WebSocket('wss://ws.bitstamp.net');
         const message_ticker = {
             event: "bts:subscribe",
@@ -27,16 +28,20 @@ export class OrderbookComponent {
                 var obj = JSON.parse(evt.data)
                 console.log(obj)
                 if (obj.data.price !== undefined) {
-                    price.subscribe(obj.data.price)
+                    this.price.subscribe(obj.data.price)
                     if (obj.data.type == 0) {
-                        type.subscribe('buy')
+                        this.type.subscribe('buy')
                     }
                     else {
-                        type.subscribe('sell')
+                        this.type.subscribe('sell')
                     }
                 }
                 else {
-                    loader.render({ 'path': 'loader-component', 'template': LoaderComponentHTML, 'style': LoaderComponentCss })
+                    this.loader.render({
+                        'path': 'loader-component',
+                        'template': require('../../loader/loader.component.html'),
+                        'style': require('../../loader/loader.component.css')
+                    })
                 }
 
             } else {
@@ -47,8 +52,7 @@ export class OrderbookComponent {
            ------------------------------ORDERBOOK---------------------------------
            ------------------------------------------------------------------------
        */
-        this.bidsArr = [];
-        this.asksArr = [];
+       
         for (var i = 0; i < 10; i++) {
             var liBids = document.createElement('li');
             liBids.className = 'bids';
@@ -74,10 +78,10 @@ export class OrderbookComponent {
             if (window.location.hash === '#realtime-component') {
                 var obj = JSON.parse(evt.data)
                 if (obj.data.bids !== undefined && obj.data.asks !== undefined) {
-                    obj.data.bids.slice(0, 10).forEach((el, i) => {
+                    obj.data.bids.slice(0, 10).forEach((el:any, i:number) => {
                         this.bidsArr[i].subscribe(el[0] + '&nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1])
                     })
-                    obj.data.asks.slice(0, 10).reverse().forEach((el, i) => {
+                    obj.data.asks.slice(0, 10).reverse().forEach((el:any, i:number) => {
                         this.asksArr[i].subscribe(el[0] + ' &nbsp;&nbsp;&nbsp;&nbsp;    ' + el[1])
                     })
                 }
