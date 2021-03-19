@@ -1,5 +1,5 @@
-import { TransactionService } from '../../../services/http-services/transaction.service.js';
-import { EchartsService } from '../../../services/echarts-services/echarts.services.js';
+import { TransactionService } from '../../../services/http-services/transaction.service';
+import { EchartsService } from '../../../services/echarts-services/echarts.services';
 
 
 export class CandlestickComponent {
