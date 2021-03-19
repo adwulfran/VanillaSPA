@@ -17,9 +17,7 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "echarts": "^5.0.0",
-    "node-mailer": "^0.1.1",
-    "nodemailer": "^6.5.0",
-    "ws": "^7.4.3"
+    "@types/echarts": "^4.9.6",
+    "echarts": "^5.0.0"
   }
 }
